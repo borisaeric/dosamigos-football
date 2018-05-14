@@ -10,9 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2018_05_14_101754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clubs", force: :cascade do |t|
+    t.string "name"
+    t.string "stadium"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clubs_seasons", id: false, force: :cascade do |t|
+    t.bigint "season_id", null: false
+    t.bigint "club_id", null: false
+    t.index ["season_id", "club_id"], name: "index_clubs_seasons_on_season_id_and_club_id"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string "name"
+    t.string "number_of_teams"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
