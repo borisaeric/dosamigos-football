@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :clubs
-      resources :seasons
+      resources :seasons do
+        resources :matches
+      end
     end
   end
 end

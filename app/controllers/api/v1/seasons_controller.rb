@@ -31,6 +31,12 @@ module Api
         end
       end
 
+      def destroy
+        season = Season.find(params[:id])
+        season.destroy
+        head :no_content
+      end
+
       private
 
       def season_params
