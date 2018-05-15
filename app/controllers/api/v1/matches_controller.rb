@@ -9,7 +9,7 @@ module Api
         render json: { matches: matches }
       end
 
-      def show 
+      def show
         season = Season.find(params[:season_id])
         match = season.matches.find(params[:id])
         render json: { match: match }
@@ -18,6 +18,7 @@ module Api
       def create
         match = Match.new(match_params)
         if match.save
+          match.add_stats_to_match(1)
           render json: { match: match }, status: :created
         else
           render json: { errors: match.errors.full_messages }, status: :unprocessable_entity
@@ -26,7 +27,9 @@ module Api
 
       def update
         match = Match.find(params[:id])
+        match.add_stats_to_match(-1)
         if match.update(match_params)
+          match.add_stats_to_match(1)
           render json: { match: match }, status: :ok
         else
           render json: { errors: match.errors.full_messages }, status: :unprocessable_entity

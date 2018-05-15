@@ -33,4 +33,21 @@ class Match < ApplicationRecord
     return if season.clubs.exists?(away_club_id)
     errors.add(:base, 'Away club does not exists in season')
   end
+
+  def add_stats_to_match(add_or_delete)
+    standing_home = Standing.find_by(club_id: home_club_id, season_id: season_id)
+    standing_away = Standing.find_by(club_id: away_club_id, season_id: season_id)
+    if(home_club_score > away_club_score)
+      standing_home.match_score("win", home_club_score, away_club_score, add_or_delete)
+      standing_away.match_score("defeat", away_club_score, home_club_score, add_or_delete)
+    end
+    if(home_club_score < away_club_score)
+      standing_away.match_score("win", away_club_score, home_club_score, add_or_delete)
+      standing_home.match_score("defeat", home_club_score, away_club_score, add_or_delete)
+    end
+    if(home_club_score == away_club_score)
+      standing_away.match_score("draw", away_club_score, home_club_score, add_or_delete)
+      standing_home.match_score("draw", home_club_score, away_club_score, add_or_delete)
+    end 
+  end
 end

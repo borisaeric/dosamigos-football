@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :clubs
       resources :seasons do
         resources :matches
+        resources :standings, only: [:index]
       end
     end
   end
