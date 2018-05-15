@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   
   resources :clubs
+  resources :seasons
 
   root 'welcome#index'
 

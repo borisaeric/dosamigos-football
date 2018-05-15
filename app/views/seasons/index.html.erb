@@ -1,0 +1,22 @@
+<h1>List of seasons</h1>
+
+<%= link_to 'Add season', new_season_path %>
+ 
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+ 
+  <% @seasons.each do |season| %>
+    <tr>
+      <td><%= link_to season.name, season_path(season) %></td>
+      <td><%= link_to 'Edit', edit_season_path(season) %></td>
+      <td><%= link_to 'Delete', season_path(season),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Back', root_path %>

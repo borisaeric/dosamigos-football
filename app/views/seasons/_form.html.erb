@@ -1,0 +1,33 @@
+<%= form_with model: @season, local: true do |form| %>
+ 
+  <% if @season.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@season.errors.count, "error") %> prohibited this season from being saved:
+      </h2>
+      <ul>
+        <% @season.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label "Club(s)" %><br />
+      <%= form.collection_check_boxes :club_ids, Club.all, :id, :name do |b| %>
+        <%= b.check_box %>
+        <%= b.label %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
