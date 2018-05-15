@@ -1,0 +1,11 @@
+<p>
+  <strong>Club name:</strong>
+  <%= @club.name %>
+</p>
+<p>
+  <strong>Club stadium:</strong>
+  <%= @club.stadium %>
+</p>
+
+<%= link_to 'Edit', edit_club_path(@club) %> |
+<%= link_to 'Back', clubs_path %>
