@@ -1,0 +1,40 @@
+<%= form_for [@match.season, @match], local: true do |form| %>
+ 
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:
+      </h2>
+      <ul>
+        <% @match.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :home_club_id, "Home Club" %>
+    <%= form.collection_select :home_club_id, @match.season.clubs.all, :id, :name %>
+  </p>
+
+  <p>
+    <%= form.label :away_club_id, "Away Club" %>
+    <%= form.collection_select :away_club_id, @match.season.clubs.all, :id, :name %>
+  </p>
+
+  <p>
+    <%= form.label :home_club_score, "Home Club Goals" %><br>
+    <%= form.text_field :home_club_score %>
+  </p>
+
+  <p>
+    <%= form.label :away_club_score, "Away Club Goals" %><br>
+    <%= form.text_field :away_club_score %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>

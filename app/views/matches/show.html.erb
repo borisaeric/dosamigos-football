@@ -1,0 +1,19 @@
+<p>
+  <strong>Home Club:</strong>
+  <%= @match.home_club.name %>
+</p>
+<p>
+  <strong>Away Club:</strong>
+  <%= @match.away_club.name %>
+</p>
+<p>
+  <strong>Home Club Goals:</strong>
+  <%= @match.home_club_score %>
+</p>
+<p>
+  <strong>Away Club Goals:</strong>
+  <%= @match.away_club_score %>
+</p>
+
+<%= link_to 'Edit', edit_season_match_path(@match.season, @match) %> |
+<%= link_to 'Back', season_matches_path(@match.season) %>

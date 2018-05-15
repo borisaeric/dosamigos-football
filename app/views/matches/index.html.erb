@@ -1,0 +1,22 @@
+<h1>List of matches</h1>
+
+<%= link_to 'Add match', new_season_match_path %>
+ 
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+ 
+  <% @matches.each do |match| %>
+    <tr>
+      <td><%= link_to match.home_club.name+" vs "+match.away_club.name, [match.season, match] %></td>
+      <td><%= link_to 'Edit', edit_season_match_path(match.season, match) %></td>
+      <td><%= link_to 'Delete', [match.season, match],
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Back', root_path %>
