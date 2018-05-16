@@ -1,24 +1,31 @@
-<h2>List of seasons</h2>
+<h1 class="text-center text-light bg-primary mt-3">List of seasons</h1>
 
-<%= link_to 'Add season', new_season_path %>
+<a class="btn btn-block btn-outline-primary fa-lg mb-2" href="/seasons/new"><i class="fas fa-plus-circle"></i> Add season</a>
  
-<table>
-  <tr>
-    <th>Season name</th>
-    <th></th>
-  </tr>
- 
-  <% @seasons.each do |season| %>
+<table class="table table-hover text-center">
+  <thead>
     <tr>
-      <td><%= link_to season.name, season_path(season) %></td>
-      <td><%= link_to 'Matches', season_matches_path(season) %></td>
-      <td><%= link_to 'Standings', season_standings_path(season) %></td>
-      <td><%= link_to 'Edit', edit_season_path(season) %></td>
-      <td><%= link_to 'Delete', season_path(season),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+      <th scope:"row">#</th>
+      <th scope:"row">Season name</th>
+      <th scope:"row">Season matches</th>
+      <th scope:"row">Season standings</th>
+      <th scope:"row">Edit season</th>
+      <th scope:"row">Delete season</th>
     </tr>
+  </thead>
+ 
+  <% @seasons.each_with_index do |season, index| %>
+    <tbody>
+      <tr>
+        <td scope:"row"><%= index + 1 %></td>
+        <td scope:"row"><%= link_to season.name, season_path(season), class:"badge btn btn-primary fa-lg" %></td>
+        <td scope:"row"><a class="btn btn-outline-primary fa-lg" href="<%= season_matches_path(season) %>"><i class="fas fa-futbol"></i></a></td>
+        <td scope:"row"><a class="btn btn-outline-primary fa-lg" href="<%= season_standings_path(season) %>"><i class="fas fa-table"></i></a></td>
+        <td scope:"row"><a class="btn btn-outline-primary fa-lg" href="<%= edit_season_path(season) %>"><i class="fas fa-edit"></i></a></td>
+        <td scope:"row"><a data-confirm="Are you sure?" data-method="delete" class="btn btn-outline-danger fa-lg" href="<%= season_path(season) %>"><i class="fas fa-trash-alt"></i></a></td>
+      </tr>
+    </tbody>
   <% end %>
 </table>
 
-<%= link_to 'Back', root_path, class:"btn btn-block btn-outline-dark" %>
+<a class="btn btn-block btn-outline-dark fa-lg" href="/"><i class="fas fa-arrow-circle-left"></i> Back</a>

@@ -1,7 +1,7 @@
 <%= form_with model: @season, local: true do |form| %>
  
   <% if @season.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger">
       <h2>
         <%= pluralize(@season.errors.count, "error") %> prohibited this season from being saved:
       </h2>
@@ -13,21 +13,20 @@
     </div>
   <% end %>
 
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
+  <div class="form-group">
+    <%= form.label :name, class:'badge badge-primary fa-lg' %>
+    <%= form.text_field :name, class:'form-control' %>
+  </div>
 
   <p>
-    <%= form.label "Club(s)" %><br />
-      <%= form.collection_check_boxes :club_ids, Club.all, :id, :name do |b| %>
-        <%= b.check_box %>
-        <%= b.label %>
+    <%= form.label "Club(s)", class:"badge badge-primary fa-lg" %><br />
+      <%= form.collection_check_boxes :club_ids, Club.all, :id, :name do |b| %>        
+        <%= b.check_box class:"checkbox-custom" %>
+        <%= b.label class:"checkbox-custom-label btn btn-dark"%>
     <% end %>
   </p>
 
-  <p>
-    <%= form.submit %>
-  </p>
-
+  <%= button_tag(type: "submit", class: "btn btn-block btn-outline-primary fa-lg mb-1") do %>
+    <span><i class="fas fa-plus-circle"></i> Save season</span>
+  <% end %>
 <% end %>

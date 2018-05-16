@@ -1,16 +1,19 @@
-<p>
-  <strong>Season name:</strong>
-  <%= @season.name %>
-</p>
+<h2 class="alert text-center text-light bg-primary mt-3 mb-2">Season details</h2>
+
+<span class="badge badge-primary fa-lg mb-2">Season ID</span>
+<%= @season.id %><br>
+<span class="badge badge-primary fa-lg mb-2">Name</span>
+<%= @season.name %><br>
+
 
 <p>
-  <strong>Club(s):</strong>
-  <ul>
+  <strong class="btn btn-dark btn-block fa-2x">Club(s):</strong>
+  <ul class="list-unstyled">
     <% @season.clubs.each do |club| %>
-      <li><%= club.name %></li>
+      <li class="alert bg-primary text-light text-center fa-lg"><%= club.name %></li>
     <% end %>
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_season_path(@season) %> |
-<%= link_to 'Back', seasons_path, class:"btn btn-block btn-outline-dark" %>
+<a class="btn btn-block btn-outline-primary fa-lg" href="<%= edit_season_path(@season) %>"><i class="fas fa-edit"></i> Edit</a>
+<a class="btn btn-block btn-outline-dark fa-lg" href="/seasons"><i class="fas fa-arrow-circle-left"></i> Back</a>
