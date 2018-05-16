@@ -18,6 +18,7 @@ class SeasonsController < ApplicationController
   def create
     @season = Season.new(season_params)
     if @season.save
+      add_standings(@season.id)
       redirect_to @season
     else
       render 'new'
@@ -27,6 +28,7 @@ class SeasonsController < ApplicationController
   def update
     @season = Season.find(params[:id])
     if @season.update(season_params)
+      add_standings(@season.id)
       redirect_to @season
     else
       render 'edit'
@@ -44,5 +46,17 @@ class SeasonsController < ApplicationController
 
   def season_params
     params.require(:season).permit(:name, club_ids:[])
+  end
+
+  def add_standings(season_id)
+    season_params[:club_ids].each do |club_id|
+      unless(Standing.exists?(club_id: club_id, season_id: season_id))
+        standing = Standing.new
+        standing.club_id = club_id
+        standing.season_id = season_id
+        standing.init
+        standing.save
+      end
+    end
   end
 end

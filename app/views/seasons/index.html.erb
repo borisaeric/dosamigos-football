@@ -12,6 +12,7 @@
     <tr>
       <td><%= link_to season.name, season_path(season) %></td>
       <td><%= link_to 'Matches', season_matches_path(season) %></td>
+      <td><%= link_to 'Standings', season_standings_path(season) %></td>
       <td><%= link_to 'Edit', edit_season_path(season) %></td>
       <td><%= link_to 'Delete', season_path(season),
               method: :delete,

@@ -22,6 +22,7 @@ class MatchesController < ApplicationController
     season = Season.find(params[:season_id])
     @match = season.matches.new(match_params)
     if @match.save
+      @match.add_stats_to_match(1)
       redirect_to season_match_path(@match.season, @match)
     else
       render 'new'
@@ -31,7 +32,9 @@ class MatchesController < ApplicationController
   def update
     season = Season.find(params[:season_id])
     @match = season.matches.find(params[:id])
+    @match.add_stats_to_match(-1)
     if @match.update(match_params)
+      @match.add_stats_to_match(1)
       redirect_to season_match_path(@match.season, @match)
     else
       render 'edit'
@@ -40,6 +43,7 @@ class MatchesController < ApplicationController
 
   def destroy
     @match = Match.find(params[:id])
+    @match.add_stats_to_match(-1)
     @match.destroy
     
     redirect_to season_matches_path(@match.season)

@@ -38,6 +38,7 @@ module Api
 
       def destroy
         match = Match.find(params[:id])
+        match.add_stats_to_match(-1)
         match.destroy
         head :no_content
       end
