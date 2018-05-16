@@ -1,10 +1,10 @@
 <%= form_with model: @club, local: true do |form| %>
  
   <% if @club.errors.any? %>
-    <div id="error_explanation">
-      <h2>
+    <div class="alert alert-danger">
+      <h4>
         <%= pluralize(@club.errors.count, "error") %> prohibited this club from being saved:
-      </h2>
+      </h4>
       <ul>
         <% @club.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -13,18 +13,18 @@
     </div>
   <% end %>
 
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
+  <div class="form-group">
+    <%= form.label :name, class:'badge badge-primary fa-lg' %>
+    <%= form.text_field :name, class:'form-control' %>
+  </div>
 
-  <p>
-    <%= form.label :stadium %><br>
-    <%= form.text_field :stadium %>
-  </p>
+  <div class="form-group">
+    <%= form.label :stadium, class:'badge badge-primary fa-lg' %>
+    <%= form.text_field :stadium, class:'form-control' %>
+  </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
+  <%= button_tag(type: "submit", class: "btn btn-block btn-outline-primary fa-lg mb-1") do %>
+    <span><i class="fas fa-plus-circle"></i> Save club</span>
+  <% end %>
 
 <% end %>

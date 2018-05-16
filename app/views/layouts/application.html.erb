@@ -7,12 +7,35 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   </head>
 
   <body>
-    <h1>2amigos - football season manager</h1>
-    <%= link_to 'Clubs', controller: 'clubs' %>
-    <%= link_to 'Seasons', controller: 'seasons' %>
-    <%= yield %>
+    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+      <div class="container">
+        
+        <a class="navbar-brand fa-2x" href="/">
+          <i class="fas fa-futbol"></i>
+          Football season manager
+        </a>
+          
+        <ul class="navbar-nav">
+          <%= link_to 'Clubs', clubs_path, class:"nav-item nav-link" %>
+          <%= link_to 'Seasons', seasons_path, class:"nav-item nav-link" %>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <footer class="py-3 bg-dark fixed-bottom text-center">
+      <div class="container">
+      <i class="fas fa-code text-light"></i> <span class="text-light">by</span>
+      <a class="" href="https://github.com/borisaeric"> borisaeric</a>
+      </div>
+      <!-- /.container -->
+    </footer>
   </body>
 </html>

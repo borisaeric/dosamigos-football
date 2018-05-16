@@ -1,11 +1,17 @@
-<p>
-  <strong>Club name:</strong>
-  <%= @club.name %>
-</p>
-<p>
-  <strong>Club stadium:</strong>
-  <%= @club.stadium %>
-</p>
+<h1 class="text-center text-light bg-primary mt-3 mb-2">Club details</h1>
 
-<%= link_to 'Edit', edit_club_path(@club) %> |
-<%= link_to 'Back', clubs_path %>
+<span class="badge badge-primary fa-lg mb-2">ID</span>
+<%= @club.id %>
+<br>
+<span class="badge badge-primary fa-lg mb-2">Name</span>
+<%= @club.name %>
+<br>
+<span class="badge badge-primary fa-lg mb-2">Stadium</span>
+<%= @club.stadium %>
+
+<a class="btn btn-block btn-outline-primary fa-lg" href="<%= edit_club_path(@club) %>"><i class="fas fa-edit"></i> Edit</a>
+<a data-confirm="Are you sure?" data-method="delete" class="btn btn-block btn-outline-danger fa-lg" href="<%= club_path(@club) %>">
+  <i class="fas fa-trash-alt"></i> Delete
+</a>
+
+<a class="btn btn-block btn-outline-dark fa-lg" href="/clubs"><i class="fas fa-arrow-circle-left"></i> Back</a>

@@ -1,24 +1,30 @@
-<h1>List of clubs</h1>
+<h1 class="text-center text-light bg-primary mt-3">List of clubs</h1>
 
-<%= link_to 'Add club', new_club_path %>
+<a class="btn btn-block btn-outline-primary fa-lg mb-2" href="/clubs/new"><i class="fas fa-plus-circle"></i> Add club</a>
  
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Stadium</th>
-    <th></th>
-  </tr>
- 
-  <% @clubs.each do |club| %>
+<table class="table">
+  <thead>
     <tr>
-      <td><%= link_to club.name, club_path(club) %></td>
-      <td><%= link_to club.stadium, club_path(club) %></td>
-      <td><%= link_to 'Edit', edit_club_path(club) %></td>
-      <td><%= link_to 'Delete', club_path(club),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+      <th scope:"col">#</th>
+      <th scope:"col">Name</th>
+      <th scope:"col">Stadium</th>
+      <th scope:"col">Edit</th>
+      <th scope:"col">Delete</th>
     </tr>
-  <% end %>
+  </thead>
+  
+  <tbody>
+    <% @clubs.each_with_index do |club, index| %>
+      <tr>
+        <td scope:"row"><%= index + 1 %></td>
+        <td scope:"row"><%= link_to club.name, club_path(club) %></td>
+        
+        <td scope:"row"><%= link_to club.stadium, club_path(club) %></td>
+        <td scope:"row"><a class="btn btn-outline-primary fa-lg" href="<%= edit_club_path(club) %>"><i class="fas fa-edit"></i></a></td>
+        <td scope:"row"><a data-confirm="Are you sure?" data-method="delete" class="btn btn-outline-danger fa-lg" href="<%= club_path(club) %>"><i class="fas fa-trash-alt"></i></a></td>
+      </tr>
+    <% end %>
+  <tbody>
 </table>
 
-<%= link_to 'Back', root_path %>
+<a class="btn btn-block btn-outline-dark fa-lg" href="/"><i class="fas fa-arrow-circle-left"></i> Back</a>

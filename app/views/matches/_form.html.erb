@@ -1,7 +1,7 @@
 <%= form_for [@match.season, @match], local: true do |form| %>
  
   <% if @match.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger">
       <h2>
         <%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:
       </h2>
@@ -13,15 +13,16 @@
     </div>
   <% end %>
 
-  <p>
+  <div class="form-group">
     <%= form.label :home_club_id, "Home Club" %>
     <%= form.collection_select :home_club_id, @match.season.clubs.all, :id, :name %>
-  </p>
+  <div>
 
-  <p>
+
+  <div class="form-group">
     <%= form.label :away_club_id, "Away Club" %>
     <%= form.collection_select :away_club_id, @match.season.clubs.all, :id, :name %>
-  </p>
+  </div>
 
   <p>
     <%= form.label :home_club_score, "Home Club Goals" %><br>
@@ -34,7 +35,7 @@
   </p>
 
   <p>
-    <%= form.submit %>
+    <%= form.submit :'Add match' , class: 'btn btn-block btn-outline-primary' %>
   </p>
 
 <% end %>
