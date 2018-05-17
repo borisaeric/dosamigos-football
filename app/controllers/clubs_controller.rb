@@ -37,6 +37,10 @@ class ClubsController < ApplicationController
 
   def destroy
     @club = Club.find(params[:id])
+    seasons=@club.seasons
+    seasons.each do |season|
+      season.destroy
+    end
     @club.destroy
 
     redirect_to clubs_path

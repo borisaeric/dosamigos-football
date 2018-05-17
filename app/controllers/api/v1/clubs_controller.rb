@@ -33,6 +33,10 @@ module Api
 
       def destroy
         club = Club.find(params[:id])
+        seasons = club.seasons
+        seasons.each do |season|
+          season.destroy
+        end
         club.destroy
         head :no_content
       end
