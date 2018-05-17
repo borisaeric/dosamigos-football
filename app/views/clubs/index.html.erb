@@ -1,8 +1,8 @@
-<h1 class="text-center text-light bg-primary mt-3">List of clubs</h1>
+<h1 class="alert text-center text-light bg-primary mt-3">List of clubs</h1>
 
 <a class="btn btn-block btn-outline-primary fa-lg mb-2" href="/clubs/new"><i class="fas fa-plus-circle"></i> Add club</a>
  
-<table class="table">
+<table class="table table-hover text-center">
   <thead>
     <tr>
       <th scope:"col">#</th>
@@ -16,10 +16,10 @@
   <tbody>
     <% @clubs.each_with_index do |club, index| %>
       <tr>
-        <td scope:"row"><%= index + 1 %></td>
-        <td scope:"row"><%= link_to club.name, club_path(club) %></td>
+        <td scope:"row"><%= link_to index + 1, club_path(club), class:"btn btn-outline-dark" %></td>
+        <td scope:"row"><%= link_to club.name, club_path(club), class:"btn btn-primary" %></td>
         
-        <td scope:"row"><%= link_to club.stadium, club_path(club) %></td>
+        <td scope:"row"><%= link_to club.stadium, club_path(club), class:"btn btn-outline-primary" %></td>
         <td scope:"row"><a class="btn btn-outline-primary fa-lg" href="<%= edit_club_path(club) %>"><i class="fas fa-edit"></i></a></td>
         <td scope:"row"><a data-confirm="Are you sure?" data-method="delete" class="btn btn-outline-danger fa-lg" href="<%= club_path(club) %>"><i class="fas fa-trash-alt"></i></a></td>
       </tr>

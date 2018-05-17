@@ -1,4 +1,4 @@
-<h1 class="text-center text-light bg-primary mt-3">List of seasons</h1>
+<h1 class="alert text-center text-light bg-primary mt-3">List of seasons</h1>
 
 <a class="btn btn-block btn-outline-primary fa-lg mb-2" href="/seasons/new"><i class="fas fa-plus-circle"></i> Add season</a>
  
@@ -17,8 +17,8 @@
   <% @seasons.each_with_index do |season, index| %>
     <tbody>
       <tr>
-        <td scope:"row"><%= index + 1 %></td>
-        <td scope:"row"><%= link_to season.name, season_path(season), class:"badge btn btn-primary fa-lg" %></td>
+        <td scope:"row"><%= link_to index + 1, season_path(season), class:"btn btn-outline-dark" %></td>        
+        <td scope:"row"><%= link_to season.name, season_path(season), class:"btn btn-primary" %></td>
         <td scope:"row"><a class="btn btn-outline-primary fa-lg" href="<%= season_matches_path(season) %>"><i class="fas fa-futbol"></i></a></td>
         <td scope:"row"><a class="btn btn-outline-primary fa-lg" href="<%= season_standings_path(season) %>"><i class="fas fa-table"></i></a></td>
         <td scope:"row"><a class="btn btn-outline-primary fa-lg" href="<%= edit_season_path(season) %>"><i class="fas fa-edit"></i></a></td>

@@ -1,4 +1,4 @@
-<h2 class="alert text-center text-light bg-primary mt-3 mb-2">List of matches</h2>
+<h1 class="alert text-center text-light bg-primary mt-3 mb-2">List of matches</h1>
 
 <span class="badge badge-primary fa-lg mb-2">Season</span>
 <%= @season.name %><br>
@@ -19,10 +19,10 @@
   <% @matches.each_with_index do |match, index| %>
     <tbody>
       <tr>
-        <td scope:"col"><%= index + 1 %></td>
-        <td scope:"col"><%= link_to match.home_club.name+" - "+match.away_club.name, [match.season, match], class:"btn btn-outline-primary" %></td>
-        <td scope:"col"><span class="align-center"><%= match.home_club_score %> - <%= match.away_club_score %></span></td>
-        <td scope:"col"><%= match.home_club.stadium %></td>
+        <td scope:"col"><%= link_to index + 1, [match.season, match], class:"btn btn-outline-dark" %></td>
+        <td scope:"col"><%= link_to match.home_club.name+" - "+match.away_club.name, [match.season, match], class:"btn btn-primary" %></td>
+        <td scope:"col"><%= link_to match.home_club_score.to_s+" - "+match.away_club_score.to_s, [match.season, match], class:"btn btn-outline-dark" %></td>
+        <td scope:"col"><%= link_to match.home_club.stadium, [match.season, match], class:"btn btn-outline-primary" %></td>
         <td scope:"row"><a class="btn btn-outline-primary fa-lg" href="<%= edit_season_match_path(match.season, match) %>"><i class="fas fa-edit"></i></a></td>
         <td scope:"row"><a data-confirm="Are you sure?" data-method="delete" class="btn btn-outline-danger fa-lg" href="<%= season_match_path(match.season, match) %>"><i class="fas fa-trash-alt"></i></a></td>
       </tr>
