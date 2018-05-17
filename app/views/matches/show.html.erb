@@ -1,19 +1,24 @@
-<p>
-  <strong>Home Club:</strong>
-  <%= @match.home_club.name %>
-</p>
-<p>
-  <strong>Away Club:</strong>
-  <%= @match.away_club.name %>
-</p>
-<p>
-  <strong>Home Club Goals:</strong>
-  <%= @match.home_club_score %>
-</p>
-<p>
-  <strong>Away Club Goals:</strong>
-  <%= @match.away_club_score %>
-</p>
+<h2 class="alert text-center text-light bg-primary mt-3 mb-2">Match details</h2>
 
-<%= link_to 'Edit', edit_season_match_path(@match.season, @match) %> |
-<%= link_to 'Back', season_matches_path(@match.season), class:"btn btn-block btn-outline-dark" %>
+<div class="row text-center">
+  <div class="col">
+    <span class="badge badge-dark fa-lg mb-2">Home club</span><br>
+    <span class="badge badge-primary fa-2x mb-2"><%= @match.home_club.name %></span>
+  </div>
+  <div class="col">
+    <span class="badge badge-dark fa-lg mb-2">Match score</span><br>
+    <span class="badge badge-primary fa-2x mb-2"><%= @match.home_club_score %> : <%= @match.away_club_score %></span>
+  </div>
+  <div class="col">
+    <span class="badge badge-dark fa-lg mb-2">Away club</span><br>
+    <span class="badge badge-primary fa-2x mb-2"><%= @match.away_club.name %></span>
+  </div>
+</div>
+
+<div class="text-center">
+  <span class="badge badge-dark fa-lg mb-2">Location</span><br>
+  <span class="badge badge-primary fa-2x mb-2"><%= @match.home_club.stadium %></span>
+</div>
+
+<a class="btn btn-block btn-outline-primary fa-lg" href="<%= edit_season_match_path(@match) %>"><i class="fas fa-edit"></i> Edit</a>
+<a class="btn btn-block btn-outline-dark fa-lg" href="/seasons/<%= @season.id %>/matches"><i class="fas fa-arrow-circle-left"></i> Back</a>

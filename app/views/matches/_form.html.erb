@@ -2,9 +2,9 @@
  
   <% if @match.errors.any? %>
     <div class="alert alert-danger">
-      <h2>
+      <h3>
         <%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:
-      </h2>
+      </h3>
       <ul>
         <% @match.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -13,29 +13,29 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :home_club_id, "Home Club" %>
-    <%= form.collection_select :home_club_id, @match.season.clubs.all, :id, :name %>
+  <div class="form-group pt-2">
+    <%= form.label :home_club_id, "Home Club", class:"alert badge-primary fa-lg" %>
+    <%= form.collection_select :home_club_id, @match.season.clubs.all, :id, :name, {}, {class:"form-control"} %>
   <div>
 
 
   <div class="form-group">
-    <%= form.label :away_club_id, "Away Club" %>
-    <%= form.collection_select :away_club_id, @match.season.clubs.all, :id, :name %>
+    <%= form.label :away_club_id, "Away Club", class:"alert badge-primary fa-lg mt-3" %>
+    <%= form.collection_select :away_club_id, @match.season.clubs.all, :id, :name, {}, {class:"form-control"} %>
   </div>
 
-  <p>
-    <%= form.label :home_club_score, "Home Club Goals" %><br>
-    <%= form.text_field :home_club_score %>
-  </p>
+  <div class="form-group">
+    <%= form.label :home_club_score, "Home Club Goals", class:"alert badge-primary fa-lg" %>
+    <%= form.text_field :home_club_score, class:"form-control" %>
+  </div>
 
-  <p>
-    <%= form.label :away_club_score, "Away Club Goals" %><br>
-    <%= form.text_field :away_club_score %>
-  </p>
+  <div class="form-group">
+    <%= form.label :away_club_score, "Away Club Goals", class:"alert badge-primary fa-lg" %>
+    <%= form.text_field :away_club_score, class:"form-control" %>
+  </div>
 
-  <p>
-    <%= form.submit :'Add match' , class: 'btn btn-block btn-outline-primary' %>
-  </p>
-
+  <%= button_tag(type: "submit", class: "btn btn-block btn-outline-primary fa-lg mb-1") do %>
+    <span><i class="fas fa-plus-circle"></i> Save match</span>
+  <% end %>
 <% end %>
+

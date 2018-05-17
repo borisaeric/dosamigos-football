@@ -2,9 +2,9 @@
  
   <% if @season.errors.any? %>
     <div class="alert alert-danger">
-      <h2>
+      <h3>
         <%= pluralize(@season.errors.count, "error") %> prohibited this season from being saved:
-      </h2>
+      </h3>
       <ul>
         <% @season.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>

@@ -1,5 +1,5 @@
-<h1>New Match</h1>
+<h1 class="text-center text-light bg-primary mt-3">New match</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', season_matches_path(@match.season), class:"btn btn-block btn-outline-dark" %>
+<a class="btn btn-block btn-outline-dark fa-lg" href="/seasons/<%= @season.id %>/matches"><i class="fas fa-arrow-circle-left"></i> Back</a>

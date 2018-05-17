@@ -1,22 +1,33 @@
-<h1>List of matches</h1>
+<h2 class="alert text-center text-light bg-primary mt-3 mb-2">List of matches</h2>
 
-<%= link_to 'Add match', new_season_match_path %>
+<span class="badge badge-primary fa-lg mb-2">Season</span>
+<%= @season.name %><br>
+<a class="btn btn-block btn-outline-primary fa-lg mb-2" href="/seasons/<%= @season.id %>/matches/new"><i class="fas fa-plus-circle"></i> Add match</a>
  
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-  </tr>
- 
-  <% @matches.each do |match| %>
+<table class="table table-hover text-center">
+  <thead>
     <tr>
-      <td><%= link_to match.home_club.name+" vs "+match.away_club.name, [match.season, match] %></td>
-      <td><%= link_to 'Edit', edit_season_match_path(match.season, match) %></td>
-      <td><%= link_to 'Delete', [match.season, match],
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+      <th scope:"row">#</th>
+      <th scope:"row">Opponents</th>
+      <th scope:"row">Score</th>
+      <th scope:"row">Location</th>
+      <th scope:"row">Edit match</th>
+      <th scope:"row">Delete match</th>
     </tr>
+  </thead>
+ 
+  <% @matches.each_with_index do |match, index| %>
+    <tbody>
+      <tr>
+        <td scope:"col"><%= index + 1 %></td>
+        <td scope:"col"><%= link_to match.home_club.name+" - "+match.away_club.name, [match.season, match], class:"btn btn-outline-primary" %></td>
+        <td scope:"col"><span class="align-center"><%= match.home_club_score %> - <%= match.away_club_score %></span></td>
+        <td scope:"col"><%= match.home_club.stadium %></td>
+        <td scope:"row"><a class="btn btn-outline-primary fa-lg" href="<%= edit_season_match_path(match.season, match) %>"><i class="fas fa-edit"></i></a></td>
+        <td scope:"row"><a data-confirm="Are you sure?" data-method="delete" class="btn btn-outline-danger fa-lg" href="<%= season_match_path(match.season, match) %>"><i class="fas fa-trash-alt"></i></a></td>
+      </tr>
+    </tbody>
   <% end %>
 </table>
 
-<%= link_to 'Back', root_path, class:"btn btn-block btn-outline-dark" %>
+<a class="btn btn-block btn-outline-dark fa-lg" href="/seasons"><i class="fas fa-arrow-circle-left"></i> Back</a>

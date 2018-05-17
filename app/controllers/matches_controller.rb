@@ -1,26 +1,27 @@
 class MatchesController < ApplicationController
   def index
-    season = Season.find(params[:season_id])
-    @matches = season.matches
+    @season = Season.find(params[:season_id])
+    @matches = @season.matches
   end
 
   def show
-    season = Season.find(params[:season_id])
-    @match = season.matches.find(params[:id])
+    @season = Season.find(params[:season_id])
+    @match = @season.matches.find(params[:id])
   end
 
   def new
-    season = Season.find(params[:season_id])
-    @match = season.matches.build
+    @season = Season.find(params[:season_id])
+    @match = @season.matches.build
   end
 
   def edit
     @match = Match.find(params[:id])
+    @season = @match.season
   end
 
   def create
-    season = Season.find(params[:season_id])
-    @match = season.matches.new(match_params)
+    @season = Season.find(params[:season_id])
+    @match = @season.matches.new(match_params)
     if @match.save
       @match.add_stats_to_match(1)
       redirect_to season_match_path(@match.season, @match)
@@ -30,10 +31,11 @@ class MatchesController < ApplicationController
   end
 
   def update
-    season = Season.find(params[:season_id])
-    @match = season.matches.find(params[:id])
-    @match.add_stats_to_match(-1)
+    @season = Season.find(params[:season_id])
+    @match = @season.matches.find(params[:id])
+    match2 = @season.matches.find(params[:id])
     if @match.update(match_params)
+      match2.add_stats_to_match(-1)
       @match.add_stats_to_match(1)
       redirect_to season_match_path(@match.season, @match)
     else
