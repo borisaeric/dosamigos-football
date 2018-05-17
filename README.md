@@ -40,11 +40,11 @@ rails s
 
 ## API Documentation
 
-* [Read documentation](https://documenter.getpostman.com/view/3160424/dosamigos-football-api/RW83Nrhv)
+[Read documentation](https://documenter.getpostman.com/view/3160424/dosamigos-football-api/RW83Nrhv)
 
 ## Database schema
 
-[![](https://github.com/borisaeric/dosamigos-football/extra-stuff/database-schema.png)](https://github.com/borisaeric/dosamigos-football/extra-stuff/database-schema.png "Database schema")
+[View schema](https://github.com/borisaeric/dosamigos-football/extra-stuff/database-schema.png)
 
 ## Versioning
 
