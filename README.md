@@ -44,7 +44,7 @@ rails s
 
 ## Database schema
 
-[View schema](https://github.com/borisaeric/dosamigos-football/extra-stuff/database-schema.png)
+[View schema](https://github.com/borisaeric/dosamigos-football/blob/master/extra-stuff/database-schema.png)
 
 ## Versioning
 
