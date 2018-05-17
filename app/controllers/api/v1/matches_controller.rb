@@ -1,7 +1,6 @@
 module Api
   module V1    
     class MatchesController < ApiController
-      rescue_from ActiveRecord::RecordNotFound, with: :club_or_season_not_found
       
       def index
         season = Season.find(params[:season_id])

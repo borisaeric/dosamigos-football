@@ -1,7 +1,6 @@
 module Api
   module V1   
     class ClubsController < ApiController
-      rescue_from ActiveRecord::RecordNotFound, with: :club_not_found
 
       def index
         clubs = Club.all
@@ -47,9 +46,6 @@ module Api
         params.require(:club).permit(:name, :stadium)
       end
 
-      def club_not_found
-        render json: { error: 'Club not found' }, status: 404
-      end
     end
   end
 end
